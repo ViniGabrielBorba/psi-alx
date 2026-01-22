@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Alexandre Almeida | Psicologo</title>
+    <style>
+      :root {
+        --bege: #f3ede3;
+        --bege-escuro: #e5dbcf;
+        --cinza: #6b6b6b;
+        --cinza-escuro: #3f3f3f;
+        --marrom: #7a5a3a;
+        --marrom-escuro: #5b422b;
+        --branco: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--cinza-escuro);
+        background: linear-gradient(180deg, var(--bege), var(--branco));
+      }
+
+      .container {
+        width: min(1120px, 92%);
+        margin: 0 auto;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 48px;
+        align-items: center;
+        padding: 72px 0 40px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: var(--bege-escuro);
+        color: var(--marrom-escuro);
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 2.6vw + 1.4rem, 3.2rem);
+        margin: 16px 0;
+        color: var(--marrom-escuro);
+        line-height: 1.1;
+      }
+
+      .lead {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--cinza);
+        margin-bottom: 28px;
+      }
+
+      .cta-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .button {
+        padding: 12px 20px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .button-primary {
+        background: var(--marrom);
+        color: var(--branco);
+        box-shadow: 0 12px 20px rgba(122, 90, 58, 0.2);
+      }
+
+      .button-secondary {
+        border-color: var(--marrom);
+        color: var(--marrom-escuro);
+        background: transparent;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .hero-card {
+        background: var(--branco);
+        padding: 22px;
+        border-radius: 24px;
+        box-shadow: 0 25px 60px rgba(63, 63, 63, 0.15);
+        display: grid;
+        gap: 16px;
+      }
+
+      .hero-card img {
+        width: 100%;
+        border-radius: 20px;
+        object-fit: cover;
+      }
+
+      .hero-card .info {
+        display: grid;
+        gap: 10px;
+      }
+
+      .hero-card .info h2 {
+        margin: 0;
+        color: var(--marrom-escuro);
+        font-size: 1.5rem;
+      }
+
+      .hero-card .info p {
+        margin: 0;
+        color: var(--cinza);
+        line-height: 1.6;
+      }
+
+      section {
+        padding: 50px 0;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--marrom-escuro);
+        margin-bottom: 12px;
+      }
+
+      .section-subtitle {
+        color: var(--cinza);
+        max-width: 720px;
+        line-height: 1.7;
+      }
+
+      .grid {
+        display: grid;
+        gap: 24px;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card {
+        background: var(--branco);
+        padding: 24px;
+        border-radius: 18px;
+        border: 1px solid rgba(122, 90, 58, 0.12);
+        box-shadow: 0 24px 50px rgba(63, 63, 63, 0.1);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(229, 219, 207, 0.7),
+          rgba(255, 255, 255, 0)
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, var(--marrom), var(--bege));
+        opacity: 0.6;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 28px 60px rgba(63, 63, 63, 0.16);
+      }
+
+      .card:hover::before {
+        opacity: 1;
+      }
+
+      .card h3 {
+        margin-top: 0;
+        color: var(--marrom);
+      }
+
+      .card p {
+        margin-bottom: 0;
+        color: var(--cinza);
+        line-height: 1.6;
+      }
+
+      .ebook {
+        display: grid;
+        gap: 28px;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        background: var(--bege-escuro);
+        border-radius: 26px;
+        padding: 36px;
+      }
+
+      .ebook h3 {
+        color: var(--marrom-escuro);
+        margin-top: 0;
+        font-size: 1.6rem;
+      }
+
+      .ebook strong {
+        color: var(--marrom-escuro);
+      }
+
+      .ebook ul {
+        padding-left: 18px;
+        color: var(--cinza);
+        line-height: 1.7;
+        margin: 18px 0 0;
+      }
+
+      .ebook-quote {
+        background: var(--branco);
+        padding: 24px;
+        border-radius: 18px;
+        border: 1px solid rgba(122, 90, 58, 0.08);
+        color: var(--marrom-escuro);
+        font-weight: 600;
+        line-height: 1.6;
+      }
+
+      form {
+        display: grid;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      label {
+        font-weight: 600;
+        color: var(--marrom-escuro);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(63, 63, 63, 0.2);
+        font-size: 1rem;
+        font-family: inherit;
+      }
+
+      textarea {
+        min-height: 140px;
+        resize: vertical;
+      }
+
+      .footer-note {
+        margin-top: 12px;
+        color: var(--cinza);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 960px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .ebook {
+          grid-template-columns: 1fr;
+        }
+
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          padding-top: 48px;
+        }
+
+        .cta-group {
+          flex-direction: column;
+          align-items: stretch;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero">
+        <div>
+          <span class="badge">Psicologo Clinico</span>
+          <h1>Alexandre Almeida</h1>
+          <p class="lead">
+            Acompanhamento psicologico com abordagem em Terapia
+            Cognitivo-Comportamental, focado em autonomia emocional,
+            autocuidado e estrategias praticas para lidar com ansiedade.
+          </p>
+          <div class="cta-group">
+            <a class="button button-primary" href="#ebook">Quero o ebook</a>
+            <a class="button button-secondary" href="#contato">Falar com Alexandre</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <img
+            src="img/WhatsApp%20Image%202026-01-22%20at%2010.22.00.jpeg"
+            alt="Foto do psicologo Alexandre Almeida"
+          />
+          <div class="info">
+            <h2>Escuta acolhedora e objetiva</h2>
+            <p>
+              Atendimento humanizado para entender sua historia, identificar
+              padroes de ansiedade e construir um plano claro de transformacao.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre">
+        <h2 class="section-title">Sobre Alexandre</h2>
+        <p class="section-subtitle">
+          Alexandre Almeida atua com foco em ansiedade, estresse e
+          autorregulacao emocional. A pratica clinica une acolhimento e
+          tecnicas da Terapia Cognitivo-Comportamental para transformar
+          pensamentos automaticos, crenças limitantes e comportamentos que
+          mantem o ciclo da ansiedade.
+        </p>
+
+        <div class="grid grid-3" style="margin-top: 26px;">
+          <div class="card">
+            <h3>Clareza</h3>
+            <p>
+              Compreensao do que dispara a ansiedade e como responder de
+              forma equilibrada no dia a dia.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Questionamento</h3>
+            <p>
+              Tecnicas para identificar pensamentos distorcidos e substituir
+              por interpretacoes mais realistas.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Transformacao</h3>
+            <p>
+              Mudancas graduais em rotinas, foco e autocuidado para manter
+              uma mente mais tranquila.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="ebook">
+        <div class="ebook">
+          <div>
+            <span class="badge">Ebook exclusivo</span>
+            <h3>Ansiedade: Entenda, Questione, Transforme</h3>
+            <p class="section-subtitle">
+              <strong>Subtitulo:</strong> 5 estrategias da Terapia
+              Cognitivo-Comportamental para uma mente mais equilibrada.
+            </p>
+            <ul>
+              <li>Como reconhecer gatilhos e sinais precoces.</li>
+              <li>Ferramentas para interromper pensamentos acelerados.</li>
+              <li>Exercicios de respiracao e presenca no agora.</li>
+              <li>Roteiro simples para praticar durante a semana.</li>
+              <li>Plano de manutencao para reduzir recaidas.</li>
+            </ul>
+          </div>
+          <div class="ebook-quote">
+            "Ansiedade nao precisa controlar a sua rotina. Com as estrategias
+            certas, voce retoma o foco e cria espaco para viver com mais leveza."
+          </div>
+        </div>
+      </section>
+
+      <section id="contato">
+        <h2 class="section-title">Contato</h2>
+        <p class="section-subtitle">
+          Envie sua mensagem para Alexandre Almeida e receba orientacoes sobre
+          o ebook. Ao enviar, seu email sera aberto com uma mensagem automatica.
+        </p>
+
+        <form id="contato-form">
+          <div>
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" type="text" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+          <div>
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" required>
+Vim comprar o seu eBook e aprender com o seu conteúdo.</textarea
+            >
+          </div>
+          <button class="button button-primary" type="submit">
+            Enviar mensagem
+          </button>
+        </form>
+        <p class="footer-note">
+          Se preferir, envie diretamente para
+          <strong>alexandre.almeida@exemplo.com</strong>.
+        </p>
+      </section>
+    </main>
+
+    <script>
+      const form = document.getElementById("contato-form");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const nome = document.getElementById("nome").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const mensagem = document.getElementById("mensagem").value.trim();
+
+        const assunto = encodeURIComponent("Interesse no ebook");
+        const corpo = encodeURIComponent(
+          `Olá Alexandre,\n\nMeu nome é ${nome} (${email}).\n${mensagem}\n\nAguardo retorno.`
+        );
+
+        window.location.href =
+          `mailto:alexandre.almeida@exemplo.com?subject=${assunto}&body=${corpo}`;
+      });
+    </script>
+  </body>
+</html>
