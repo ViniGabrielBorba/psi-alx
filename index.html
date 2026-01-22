@@ -6,12 +6,12 @@
     <title>Alexandre Almeida | Psicologo</title>
     <style>
       :root {
-        --bege: #f3ede3;
-        --bege-escuro: #e5dbcf;
+        --bege: #f2fbf6;
+        --bege-escuro: #e1f3ea;
         --cinza: #6b6b6b;
         --cinza-escuro: #3f3f3f;
-        --marrom: #7a5a3a;
-        --marrom-escuro: #5b422b;
+        --marrom: #2f7a5a;
+        --marrom-escuro: #1f5a41;
         --branco: #ffffff;
       }
 
@@ -83,7 +83,7 @@
       .button-primary {
         background: var(--marrom);
         color: var(--branco);
-        box-shadow: 0 12px 20px rgba(122, 90, 58, 0.2);
+        box-shadow: 0 12px 20px rgba(47, 122, 90, 0.2);
       }
 
       .button-secondary {
@@ -98,17 +98,31 @@
 
       .hero-card {
         background: var(--branco);
-        padding: 22px;
+        padding: 26px;
         border-radius: 24px;
         box-shadow: 0 25px 60px rgba(63, 63, 63, 0.15);
         display: grid;
-        gap: 16px;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        gap: 20px;
+        align-items: center;
       }
 
-      .hero-card img {
+      .photo-frame {
         width: 100%;
+        aspect-ratio: 3 / 4;
         border-radius: 20px;
+        background: linear-gradient(180deg, var(--bege-escuro), var(--branco));
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+
+      .photo-frame img {
+        width: 100%;
+        height: 100%;
         object-fit: cover;
+        object-position: center 20%;
+        display: block;
       }
 
       .hero-card .info {
@@ -157,7 +171,7 @@
         background: var(--branco);
         padding: 24px;
         border-radius: 18px;
-        border: 1px solid rgba(122, 90, 58, 0.12);
+        border: 1px solid rgba(47, 122, 90, 0.12);
         box-shadow: 0 24px 50px rgba(63, 63, 63, 0.1);
         position: relative;
         overflow: hidden;
@@ -170,7 +184,7 @@
         inset: 0;
         background: linear-gradient(
           135deg,
-          rgba(229, 219, 207, 0.7),
+          rgba(225, 243, 234, 0.8),
           rgba(255, 255, 255, 0)
         );
         opacity: 0;
@@ -240,10 +254,41 @@
         background: var(--branco);
         padding: 24px;
         border-radius: 18px;
-        border: 1px solid rgba(122, 90, 58, 0.08);
+        border: 1px solid rgba(47, 122, 90, 0.1);
         color: var(--marrom-escuro);
         font-weight: 600;
         line-height: 1.6;
+      }
+
+      .ebook-actions {
+        display: grid;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .ebook-download {
+        background: var(--branco);
+        border-radius: 18px;
+        border: 1px solid rgba(47, 122, 90, 0.12);
+        padding: 18px 20px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .ebook-download strong {
+        color: var(--marrom-escuro);
+      }
+
+      .button-disabled {
+        opacity: 0.6;
+        pointer-events: none;
+        box-shadow: none;
+      }
+
+      .download-note {
+        color: var(--cinza);
+        font-size: 0.95rem;
+        margin: 0;
       }
 
       form {
@@ -283,6 +328,15 @@
           grid-template-columns: 1fr;
         }
 
+        .hero-card {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .hero-card .info {
+          justify-items: center;
+        }
+
         .ebook {
           grid-template-columns: 1fr;
         }
@@ -311,9 +365,9 @@
           <span class="badge">Psicologo Clinico</span>
           <h1>Alexandre Almeida</h1>
           <p class="lead">
-            Acompanhamento psicologico com abordagem em Terapia
-            Cognitivo-Comportamental, focado em autonomia emocional,
-            autocuidado e estrategias praticas para lidar com ansiedade.
+            Especialista em Terapia Cognitivo-Comportamental e em dependencia
+            quimica, com foco em autonomia emocional, autocuidado e estrategias
+            praticas para lidar com ansiedade.
           </p>
           <div class="cta-group">
             <a class="button button-primary" href="#ebook">Quero o ebook</a>
@@ -321,10 +375,12 @@
           </div>
         </div>
         <div class="hero-card">
-          <img
-            src="img/WhatsApp%20Image%202026-01-22%20at%2010.22.00.jpeg"
-            alt="Foto do psicologo Alexandre Almeida"
-          />
+          <div class="photo-frame">
+            <img
+              src="img/COLORIDA.jpeg"
+              alt="Foto do psicologo Alexandre Almeida"
+            />
+          </div>
           <div class="info">
             <h2>Escuta acolhedora e objetiva</h2>
             <p>
@@ -338,11 +394,11 @@
       <section id="sobre">
         <h2 class="section-title">Sobre Alexandre</h2>
         <p class="section-subtitle">
-          Alexandre Almeida atua com foco em ansiedade, estresse e
+          Alexandre Almeida e especialista em Terapia Cognitivo-Comportamental
+          e em dependencia quimica, com foco em ansiedade, estresse e
           autorregulacao emocional. A pratica clinica une acolhimento e
-          tecnicas da Terapia Cognitivo-Comportamental para transformar
-          pensamentos automaticos, crenças limitantes e comportamentos que
-          mantem o ciclo da ansiedade.
+          tecnicas da TCC para transformar pensamentos automaticos, crenças
+          limitantes e comportamentos que mantem o ciclo da ansiedade.
         </p>
 
         <div class="grid grid-3" style="margin-top: 26px;">
@@ -376,8 +432,8 @@
             <span class="badge">Ebook exclusivo</span>
             <h3>Ansiedade: Entenda, Questione, Transforme</h3>
             <p class="section-subtitle">
-              <strong>Subtitulo:</strong> 5 estrategias da Terapia
-              Cognitivo-Comportamental para uma mente mais equilibrada.
+              Uma leitura pratica para reduzir a ansiedade e recuperar o foco
+              com estrategias da Terapia Cognitivo-Comportamental.
             </p>
             <ul>
               <li>Como reconhecer gatilhos e sinais precoces.</li>
@@ -386,10 +442,38 @@
               <li>Roteiro simples para praticar durante a semana.</li>
               <li>Plano de manutencao para reduzir recaidas.</li>
             </ul>
+            <div class="ebook-actions">
+              <a
+                class="button button-primary"
+                id="buy-ebook"
+                href="#"
+                target="_blank"
+                rel="noopener"
+              >
+                Comprar eBook via Mercado Pago
+              </a>
+              <p class="download-note">
+                Pagamento aprovado? O download libera automaticamente.
+              </p>
+            </div>
           </div>
           <div class="ebook-quote">
             "Ansiedade nao precisa controlar a sua rotina. Com as estrategias
             certas, voce retoma o foco e cria espaco para viver com mais leveza."
+            <div class="ebook-download" style="margin-top: 20px;">
+              <strong>Download do eBook</strong>
+              <a
+                id="download-ebook"
+                class="button button-secondary button-disabled"
+                href="EBOOK/ebook_ansiedade_alexandre_almeida.pdf"
+                download
+              >
+                Baixar PDF
+              </a>
+              <p class="download-note" id="download-status">
+                Disponivel apos confirmacao do pagamento.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -413,7 +497,7 @@
           <div>
             <label for="mensagem">Mensagem</label>
             <textarea id="mensagem" name="mensagem" required>
-Vim comprar o seu eBook e aprender com o seu conteúdo.</textarea
+            </textarea
             >
           </div>
           <button class="button button-primary" type="submit">
@@ -428,6 +512,28 @@ Vim comprar o seu eBook e aprender com o seu conteúdo.</textarea
     </main>
 
     <script>
+      const MERCADO_PAGO_CHECKOUT_URL = "";
+      const APPROVED_STATUSES = new Set(["approved", "accredited"]);
+
+      const buyButton = document.getElementById("buy-ebook");
+      const downloadButton = document.getElementById("download-ebook");
+      const downloadStatus = document.getElementById("download-status");
+
+      if (MERCADO_PAGO_CHECKOUT_URL) {
+        buyButton.href = MERCADO_PAGO_CHECKOUT_URL;
+      } else {
+        buyButton.classList.add("button-disabled");
+        buyButton.textContent = "Pagamento via Mercado Pago (configurar)";
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const paymentStatus = params.get("status");
+
+      if (paymentStatus && APPROVED_STATUSES.has(paymentStatus)) {
+        downloadButton.classList.remove("button-disabled");
+        downloadStatus.textContent = "Pagamento aprovado. Download liberado.";
+      }
+
       const form = document.getElementById("contato-form");
       form.addEventListener("submit", (event) => {
         event.preventDefault();
