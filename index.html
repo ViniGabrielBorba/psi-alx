@@ -4,6 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Alexandre Almeida | Psicologo</title>
+    <meta
+      name="description"
+      content="Psicologo Alexandre Almeida, especialista em Terapia Cognitivo-Comportamental e dependencia quimica. Ebook sobre ansiedade com estrategias praticas."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Alexandre Almeida | Psicologo" />
+    <meta
+      property="og:description"
+      content="Atendimento com foco em ansiedade, TCC e dependencia quimica. Conheca o ebook Ansiedade: Entenda, Questione, Transforme."
+    />
+    <meta property="og:type" content="website" />
     <style>
       :root {
         --bege: #f2fbf6;
@@ -323,6 +334,61 @@
         font-size: 0.95rem;
       }
 
+      footer {
+        margin-top: 60px;
+        padding: 32px 0 48px;
+        border-top: 1px solid rgba(47, 122, 90, 0.12);
+      }
+
+      .footer-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .footer-grid h4 {
+        margin: 0;
+        color: var(--marrom-escuro);
+      }
+
+      .footer-grid p,
+      .footer-grid a {
+        margin: 0;
+        color: var(--cinza);
+        text-decoration: none;
+      }
+
+      .footer-grid a:hover {
+        color: var(--marrom-escuro);
+      }
+
+      .cookie-banner {
+        position: fixed;
+        bottom: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--branco);
+        border: 1px solid rgba(47, 122, 90, 0.15);
+        box-shadow: 0 16px 40px rgba(63, 63, 63, 0.2);
+        border-radius: 16px;
+        padding: 16px 18px;
+        width: min(560px, 92%);
+        display: none;
+        gap: 12px;
+        z-index: 20;
+      }
+
+      .cookie-banner p {
+        margin: 0;
+        color: var(--cinza);
+        line-height: 1.5;
+      }
+
+      .cookie-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
       @media (max-width: 960px) {
         .hero {
           grid-template-columns: 1fr;
@@ -354,6 +420,12 @@
         .cta-group {
           flex-direction: column;
           align-items: stretch;
+        }
+
+        .cookie-banner {
+          left: 16px;
+          right: 16px;
+          transform: none;
         }
       }
     </style>
@@ -509,7 +581,36 @@
           <strong>alexandre.almeida@exemplo.com</strong>.
         </p>
       </section>
+
+      <footer>
+        <div class="footer-grid">
+          <h4>Alexandre Almeida</h4>
+          <p>Psicologo - TCC e dependencia quimica</p>
+          <p>Atendimento online e presencial</p>
+          <a href="mailto:alexandre.almeida@exemplo.com">
+            alexandre.almeida@exemplo.com
+          </a>
+          <a href="https://instagram.com/alexandrepsii" target="_blank" rel="noopener">
+            Instagram: @alexandrepsii
+          </a>
+        </div>
+      </footer>
     </main>
+
+    <div class="cookie-banner" id="cookie-banner">
+      <p>
+        Usamos cookies para melhorar a experiencia no site e analisar o uso do
+        conteudo. Voce pode aceitar ou recusar.
+      </p>
+      <div class="cookie-actions">
+        <button class="button button-primary" id="cookie-accept">
+          Aceitar cookies
+        </button>
+        <button class="button button-secondary" id="cookie-decline">
+          Recusar
+        </button>
+      </div>
+    </div>
 
     <script>
       const MERCADO_PAGO_CHECKOUT_URL = "https://mpago.la/1qQFbBs";
@@ -527,7 +628,10 @@
       }
 
       const params = new URLSearchParams(window.location.search);
-      const paymentStatus = params.get("status");
+      const paymentStatus =
+        params.get("status") ||
+        params.get("collection_status") ||
+        params.get("payment_status");
 
       if (paymentStatus && APPROVED_STATUSES.has(paymentStatus)) {
         downloadButton.classList.remove("button-disabled");
@@ -549,6 +653,26 @@
 
         window.location.href =
           `mailto:alexandre.almeida@exemplo.com?subject=${assunto}&body=${corpo}`;
+      });
+
+      const cookieBanner = document.getElementById("cookie-banner");
+      const cookieAccept = document.getElementById("cookie-accept");
+      const cookieDecline = document.getElementById("cookie-decline");
+      const COOKIE_KEY = "cookie_consent";
+
+      const savedConsent = localStorage.getItem(COOKIE_KEY);
+      if (!savedConsent) {
+        cookieBanner.style.display = "grid";
+      }
+
+      cookieAccept.addEventListener("click", () => {
+        localStorage.setItem(COOKIE_KEY, "accepted");
+        cookieBanner.style.display = "none";
+      });
+
+      cookieDecline.addEventListener("click", () => {
+        localStorage.setItem(COOKIE_KEY, "declined");
+        cookieBanner.style.display = "none";
       });
     </script>
   </body>
