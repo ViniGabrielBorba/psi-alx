@@ -328,6 +328,23 @@
         resize: vertical;
       }
 
+      .consent {
+        display: grid;
+        gap: 8px;
+        font-size: 0.95rem;
+        color: var(--cinza);
+      }
+
+      .consent label {
+        font-weight: 500;
+        color: var(--cinza);
+      }
+
+      .consent input {
+        width: auto;
+        margin-right: 8px;
+      }
+
       .footer-note {
         margin-top: 12px;
         color: var(--cinza);
@@ -620,6 +637,13 @@
             </textarea
             >
           </div>
+          <div class="consent">
+            <label>
+              <input id="consentimento" type="checkbox" required />
+              Concordo com a Politica de Privacidade e autorizo o uso dos meus
+              dados para responder esta mensagem.
+            </label>
+          </div>
           <button class="button button-primary" type="submit">
             Enviar mensagem
           </button>
@@ -627,6 +651,43 @@
         <p class="footer-note">
           Se preferir, envie diretamente para
           <strong>alexandrepsi1901@gmail.com</strong>.
+        </p>
+      </section>
+
+      <section id="privacidade">
+        <h2 class="section-title">Politica de Privacidade (LGPD)</h2>
+        <p class="section-subtitle">
+          Esta pagina coleta dados pessoais (nome, e-mail e mensagem) apenas
+          para responder seu contato. Nao vendemos nem compartilhamos seus dados
+          com terceiros, exceto quando necessario para cumprir obrigacoes legais.
+        </p>
+        <div class="grid" style="margin-top: 20px;">
+          <div class="card">
+            <h3>Finalidade e base legal</h3>
+            <p>
+              Usamos seus dados para responder sua solicitacao e prestar
+              informacoes sobre o atendimento e o ebook. Base legal: legitimo
+              interesse e consentimento quando aplicavel.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Direitos do titular</h3>
+            <p>
+              Voce pode solicitar acesso, correcao, exclusao ou confirmacao de
+              tratamento dos seus dados a qualquer momento.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Retencao e seguranca</h3>
+            <p>
+              Mantemos os dados pelo tempo necessario para atender a solicitacao
+              e cumprir obrigacoes legais, adotando medidas razoaveis de seguranca.
+            </p>
+          </div>
+        </div>
+        <p class="footer-note" style="margin-top: 18px;">
+          Encarregado (DPO): Alexandre Almeida -
+          <strong>alexandrepsi1901@gmail.com</strong>
         </p>
       </section>
 
@@ -658,6 +719,7 @@
               </svg>
               Instagram: @alexandrepsii
             </a>
+            <a href="#privacidade">Politica de Privacidade</a>
           </div>
         </div>
       </footer>
@@ -666,7 +728,7 @@
     <div class="cookie-banner" id="cookie-banner">
       <p>
         Usamos cookies para melhorar a experiencia no site e analisar o uso do
-        conteudo. Voce pode aceitar ou recusar.
+        conteudo. Voce pode aceitar ou recusar. Veja a Politica de Privacidade.
       </p>
       <div class="cookie-actions">
         <button class="button button-primary" id="cookie-accept">
@@ -702,6 +764,12 @@
       if (paymentStatus && APPROVED_STATUSES.has(paymentStatus)) {
         downloadButton.classList.remove("button-disabled");
         downloadStatus.textContent = "Pagamento aprovado. Download liberado.";
+        const downloadUrl = downloadButton.getAttribute("href");
+        if (downloadUrl) {
+          setTimeout(() => {
+            window.location.href = downloadUrl;
+          }, 800);
+        }
       }
 
       const form = document.getElementById("contato-form");
