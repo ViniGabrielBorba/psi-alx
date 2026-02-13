@@ -46,4 +46,4 @@ Após configurar:
 Se o cliente pagou mas não foi redirecionado e não conseguiu baixar:
 
 - O cliente pode entrar em contato em **alexandrepsi1901@gmail.com** informando que realizou o pagamento
-- Você envia o PDF manualmente por email
+- Você envia o PDF manualmente por e-mail
