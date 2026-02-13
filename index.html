@@ -623,13 +623,17 @@
                 class="button button-primary"
                 id="buy-ebook"
                 href="#"
-                target="_blank"
                 rel="noopener"
               >
                 Comprar eBook via Mercado Pago
               </a>
               <p class="download-note">
                 Pagamento aprovado? O download libera automaticamente.
+              </p>
+              <p class="download-note" style="margin-top: 8px;">
+                <strong>Pagou e não conseguiu baixar?</strong> Entre em contato em
+                <a href="mailto:alexandrepsi1901@gmail.com?subject=Pagamento%20ebook%20-%20preciso%20do%20download">alexandrepsi1901@gmail.com</a>
+                informando que realizou o pagamento.
               </p>
             </div>
           </div>
@@ -785,6 +789,7 @@
     <script>
       const MERCADO_PAGO_CHECKOUT_URL = "https://mpago.la/1qQFbBs";
       const APPROVED_STATUSES = new Set(["approved", "accredited"]);
+      const EBOOK_PAID_KEY = "ebook_paid_alexandre";
 
       const buyButton = document.getElementById("buy-ebook");
       const downloadButton = document.getElementById("download-ebook");
@@ -797,20 +802,45 @@
         buyButton.textContent = "Pagamento via Mercado Pago (configurar)";
       }
 
-      const params = new URLSearchParams(window.location.search);
-      const paymentStatus =
-        params.get("status") ||
-        params.get("collection_status") ||
-        params.get("payment_status");
+      function getPaymentStatus() {
+        const params = new URLSearchParams(window.location.search);
+        let status = params.get("status") || params.get("collection_status") || params.get("payment_status");
+        if (status) return status.toLowerCase();
+        const hash = window.location.hash;
+        if (hash) {
+          const hashParams = new URLSearchParams(hash.replace(/^#/, "").replace(/\?/, "&"));
+          status = hashParams.get("status") || hashParams.get("collection_status") || hashParams.get("payment_status");
+          return status ? status.toLowerCase() : null;
+        }
+        return null;
+      }
 
-      if (paymentStatus && APPROVED_STATUSES.has(paymentStatus)) {
+      function triggerDownload(url) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "ebook_ansiedade_alexandre_almeida.pdf";
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+
+      function enableDownload() {
         downloadButton.classList.remove("button-disabled");
         downloadStatus.textContent = "Pagamento aprovado. Download liberado.";
-        const downloadUrl = downloadButton.getAttribute("href");
-        if (downloadUrl) {
-          setTimeout(() => {
-            window.location.href = downloadUrl;
-          }, 800);
+        localStorage.setItem(EBOOK_PAID_KEY, "1");
+      }
+
+      const paymentStatus = getPaymentStatus();
+      const wasPaidBefore = localStorage.getItem(EBOOK_PAID_KEY);
+
+      if ((paymentStatus && APPROVED_STATUSES.has(paymentStatus)) || wasPaidBefore) {
+        enableDownload();
+        var downloadUrl = downloadButton.getAttribute("href");
+        if (downloadUrl && paymentStatus && APPROVED_STATUSES.has(paymentStatus)) {
+          setTimeout(function () {
+            triggerDownload(downloadUrl);
+          }, 500);
         }
       }
 
